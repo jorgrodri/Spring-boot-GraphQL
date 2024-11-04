@@ -1,0 +1,58 @@
+#QUERY me sirve para acer consultas
+type Query {
+    # Students
+    findStudentById(studentId: String): Student
+    findAllStudents: [Student]
+
+    # Courses
+    findCourseById(courseId: String): Course
+    findAllCourses: [Course]
+    findAllCoursesByTeacher(teacher: String): [Course]
+    findAllCoursesByCategory(category: String): [Course]
+
+}
+
+
+type Mutation {
+
+    # Students
+    createStudent(inputStudent: InputStudent!) : Student,
+    deleteStudentById(studentId: String!): String
+    updateStudentById( inputStudent: InputStudent!,studentId: String!): Student
+
+    # Courses
+    createCourse(inputCourse: InputCourse!): Course
+    deleteCourseById(courseId: String!): String
+    updateCourseById( inputCourse: InputCourse!,courseId: String!): Course
+
+}
+type Student {
+
+    id: ID
+    name:String
+    lastName:String
+    age:Int
+}
+input InputStudent {
+
+    name:String
+    lastName:String
+    age:Int
+    courseId: String
+
+}
+
+
+type Course {
+
+    id: ID
+    name: String
+    teacher: String
+    category: String
+}
+input InputCourse {
+
+    name: String
+    teacher: String
+    category: String
+}
